@@ -1,72 +1,32 @@
-PY_VERSION_NUM = $(PY_VERSION_NUM)
-
-
 default:
-	echo @ makefile
-
-env:
-	pip install --upgrade pip;
-	python$(PY_VERSION_NUM) -m venv env;
-	source env/bin/activate && pip install -r requirements.txt;
-
-install_kernel: env
-	source env/bin/activate && python$(PY_VERSION_NUM) -m ipykernel --user --name env --display-name = "Python ($(PY_VERSION_NUM) env)"
-
-install_extras: env
-	source env/bin/activate && pip install nbqa nbconvert nbstripout
-
-.PHONY: tests
-tests: update
-	source env/bin/activate; pytest -vvx tests/ 
-
-can_export_to_pdfs: # note should probably be a script that gets called check for MAC
-    brew install pandoc texlive-xetex texlive-fonts-recommended texlive-plain-generic
-
-src: pylintrc
-	black src/*
-	pylint src/*
-	
-check_notebook: # assumes you're in the notebooks directory
-	nbqa pylint *.ipynb
-	black *.ipynb
-
-# write rule that won't let me push without checking if the notebook doesn't have outputs saved
-
-
-.PHONY: tests install_cosmicai lint format clean
-
-# useful for debugging
-# default:
-# 	echo @ makefile
+	echo @ default
 
 ## builds the virtual environment and attaches it to the ipykernel to be used
 build_venv:
-	pip install --upgrade pip;
-	python3.11 -m venv .venv;
+	pip3 install --upgrade pip;
+	python3.13 -m venv .venv;
+
+add_library:
 	source .venv/bin/activate && pip install -r requirements.txt;
-	source .venv/bin/activate && pip install ipykernel
-	source .venv/bin/activate && python3.11 -m ipykernel install --user --name=.venv;
+	source .venv/bin/activate && pip install ipykernel;
+	source .venv/bin/activate && python3.13 -m ipykernel install --user --name=.venv;
 
-# boto is being weird
-## runs the package tests
-tests: # only non integration tests
+## install stuff not in requirements
+install_extras: .venv
+	source .venv/bin/activate && pip install nbqa nbconvert nbstripout;
+
+## format and check notebooks
+check_notebook: # assumes you're in the notebooks directory
+	nbqa pylint *.ipynb;
+	black *.ipynb;
+
+## run the test folder
+tests: 
 	source .venv/bin/activate && pytest tests -vvx -p no:warnings
-
-## updates the astronomy ai github
-update_Astronomy_AI_git:
-	cd AI-for-Astronomy && git pull
-
-## install the prediction function to be used elsewhere
-install_cosmicai:
-	source .venv/bin/activate && pip install -e .
-
-# only useful for markdown readme
-generate_file_structure:
-	tree -L 1
 
 ## runs Google Style Guide Linter
 lint:
-	pylint src/cosmicai/*.py
+	pylint src/*.py
 
 ## runs black to auto format code
 auto_format:
