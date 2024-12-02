@@ -1,0 +1,8 @@
+#Python 3.13
+black
+pandas
+python-dotenv
+numpy
+matplotlib
+seaborn
+
