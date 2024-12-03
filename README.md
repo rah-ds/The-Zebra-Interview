@@ -5,7 +5,16 @@
  Take Home Project For the Zebra Data Science interview
 
 * GOAL: 6 hours of work to show off analysis, coding, and presentation
-
 * Written In Python3.11, use the make file to build
 
+## Make
 
+```yaml
+auto_format: runs black to auto format code 
+build_venv: builds the virtual environment and attaches it to the ipykernel to be used 
+check_notebook: format and check notebooks 
+clean: clean up the repo 
+install_extras : install stuff not in requirements 
+lint: runs Google Style Guide Linter 
+tests: run the test folder 
+```

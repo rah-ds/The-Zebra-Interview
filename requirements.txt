@@ -1,7 +1,10 @@
 #Python 3.13
 black
 pandas
+pingouin
 python-dotenv
+pylint
+# missingno # only used for this shouldn't be in requirements
 numpy
 matplotlib
 seaborn
