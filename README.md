@@ -7,9 +7,34 @@
 * GOAL: 6 hours of work to show off analysis, coding, and presentation
 * Written In Python3.11, use the make file to build
 
+
+## Repo Structure
+
+```bash
+├── LICENSE # MIT
+├── README.md 
+├── data # raw/ interim/ final/
+├── docs # brief and presentation
+├── makefile 
+├── notebooks # work showing analysis
+├── plots # plots used in presentation
+├── pylintrc # Google Style Guide
+├── requirements.txt # Python 3.11
+├── scripts 
+├── src 
+└── tests # pytest
+```
+
+
+
 ## Make
 
+```bash
+make <pick an option>
+```
+
 ```yaml
+# options
 auto_format: runs black to auto format code 
 build_venv: builds the virtual environment and attaches it to the ipykernel to be used 
 check_notebook: format and check notebooks 
