@@ -1,3 +1,6 @@
+"""This is usually how I would set my plots but in the interest of time (trying to keep to the 6 hour window, not)"""
+
+
 import sys
 
 import matplotlib
@@ -20,6 +23,7 @@ colors_zebra_interview = {
     "Soft Gray": "#d0d0d0",
     "Warm Gray": "#cecece"
 } # taken from attachments given in interview, used chatGPT to get hexidecimal 
+
 
 def plot_median_movie_score_over_time(df:pd.DataFrame) -> matplotlib.figure.Figure:
     """gives the median movie score over time, returns the figure."""
@@ -100,12 +104,3 @@ def plot_median_movie_lift_over_time(df:pd.DataFrame) -> matplotlib.figure.Figur
     plt.savefig("..//plots/median_lift_decade.png")
 
     return fig
-
-
-
-def plot_key_insight_two(df:pd.DataFrame) -> None:
-    return None
-
-
-def plot_key_insight_three(df:pd.DataFrame) -> None:
-    return None
